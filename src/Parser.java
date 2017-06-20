@@ -85,7 +85,7 @@ class Parser {
 
         Expression arg;
         if (token.equals("!")) {
-            return new Not(parseSimpleExpression());
+            return new Not(parseBinaryExpression(3));
         }
 
         if (token.equals("@") || token.equals("?")) {
