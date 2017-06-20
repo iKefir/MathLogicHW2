@@ -91,7 +91,7 @@ class Parser {
         if (token.equals("@") || token.equals("?")) {
             String str = parseToken();
             arg = new Variable(str);
-            Expression nextArg = parseSimpleExpression();
+            Expression nextArg = parseBinaryExpression(3);
             if (token.equals("@")) {
                 return new Any(arg, nextArg);
             } else return new Exists(arg, nextArg);
@@ -101,10 +101,10 @@ class Parser {
             ArrayList<Expression> terms = new ArrayList<>();
             String someTok = parseToken();
             if (someTok.equals("(")) {
-                Expression someExp = parseBinaryExpression(0);
+                Expression someExp = parseBinaryExpression(3);
                 terms.add(someExp);
                 while (parseToken().equals(",")) {
-                    someExp = parseBinaryExpression(0);
+                    someExp = parseBinaryExpression(3);
                     terms.add(someExp);
                 }
             } else {
